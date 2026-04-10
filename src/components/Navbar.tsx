@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, Radio, CheckSquare, X } from 'lucide-react';
 
@@ -14,7 +14,6 @@ export default function Navbar() {
     { id: '1', msg: 'Welcome back to CrowdEase system.', type: 'info', time: 'Just now' }
   ]);
   const [showDrawer, setShowDrawer] = useState(false);
-  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const int = setInterval(() => {

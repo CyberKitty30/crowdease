@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Clock, Navigation, CheckCircle2 } from 'lucide-react';
 
 export default function Queues() {
