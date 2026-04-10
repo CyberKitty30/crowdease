@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import Dashboard from './pages/Dashboard';
@@ -43,7 +43,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppLayout>
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -58,7 +58,7 @@ function App() {
           <Route path="/safety" element={<ProtectedRoute><SafetySOS /></ProtectedRoute>} />
         </Routes>
       </AppLayout>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
