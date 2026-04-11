@@ -1,15 +1,13 @@
 server {
-    listen       8080;
+    listen       ${PORT};
     server_name  localhost;
 
     location / {
         root   /usr/share/nginx/html;
         index  index.html index.htm;
-        # This is critical for React Router as it handles routing on the client side
         try_files $uri $uri/ /index.html;
     }
 
-    # Optional: Enable compression for better performance
     gzip on;
     gzip_vary on;
     gzip_min_length 10240;
