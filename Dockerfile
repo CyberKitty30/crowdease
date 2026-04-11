@@ -1,23 +1,21 @@
-# Step 1: Build stage
+# Step 1: Build the app
 FROM node:20-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-# Check if build output exists
-RUN ls -la /app/dist
 
-# Step 2: Production stage (Unprivileged Nginx is recommended for Cloud Run)
-FROM nginxinc/nginx-unprivileged:stable-alpine
+# Step 2: Serve the app
+FROM node:20-alpine
+WORKDIR /app
 
-# Copy build artifacts
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+# Install 'serve' utility
+RUN npm install -g serve
 
-# Copy nginx config (Unprivileged image uses 8080 by default)
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy only the built files from the previous stage
+COPY --from=build-stage /app/dist ./dist
 
-# Inform Cloud Run we use 8080
-EXPOSE 8080
-
-CMD ["nginx", "-g", "daemon off;"]
+# Use the PORT environment variable provided by Cloud Run
+# 'serve -s' handles SPA routing (Single Page Application)
+CMD serve -s dist -l ${PORT:-8080}
