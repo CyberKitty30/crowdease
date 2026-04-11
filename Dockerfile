@@ -12,12 +12,12 @@ FROM nginx:stable-alpine
 # Copy the build output
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-# Copy the Nginx template
-COPY nginx.conf.template /etc/nginx/conf.d/config.template
+# Use Nginx's built-in template feature for environment variables
+# This will automatically replace ${PORT} in the template and output to /etc/nginx/conf.d/default.conf
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
-# Default PORT if not provided by Cloud Run
+# Cloud Run's default port
 ENV PORT=8080
 
-# Use envsubst to replace ${PORT} in the template and output to the default config location
-# Then start Nginx
-CMD ["/bin/sh", "-c", "envsubst '${PORT}' < /etc/nginx/conf.d/config.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+# The official Nginx image's entrypoint will handle the template substitution
+CMD ["nginx", "-g", "daemon off;"]
