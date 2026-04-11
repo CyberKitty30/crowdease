@@ -23,8 +23,8 @@ export default function LostAndFound() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 h-full w-full">
-      <div className="lg:col-span-5 bento-card p-8 rounded-3xl flex flex-col h-full bg-white/80">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 h-auto lg:h-full w-full pb-4 lg:pb-0">
+      <div className="lg:col-span-5 bento-card p-6 sm:p-8 rounded-3xl flex flex-col h-auto lg:h-full bg-white/80">
         <h2 className="text-2xl font-black text-slate-900 mb-2">Report Found Item</h2>
         <p className="text-sm text-slate-500 mb-8 border-b border-slate-200 pb-6 shrink-0">Register displaced objects instantly to the global tracking network.</p>
 
@@ -79,12 +79,12 @@ export default function LostAndFound() {
         </form>
       </div>
 
-      <div className="lg:col-span-7 bento-card p-8 rounded-3xl flex flex-col h-full bg-white/60">
+      <div className="lg:col-span-7 bento-card p-6 sm:p-8 rounded-3xl flex flex-col h-auto min-h-[400px] lg:h-full bg-white/60">
         <div className="flex justify-between items-center mb-8 pb-6 border-b border-white/50 shrink-0">
           <h2 className="text-xl font-black text-slate-800 flex items-center gap-3">
              <Search className="w-6 h-6 text-periwinkle-dark" /> Global Directory
           </h2>
-          <span className="bg-periwinkle-light text-periwinkle-dark px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">Live Feed</span>
+          <span className="bg-periwinkle-light text-periwinkle-dark px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">Live Feed</span>
         </div>
 
         <div className="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
@@ -93,17 +93,17 @@ export default function LostAndFound() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               key={item.id} 
-              className="bg-white/80 p-6 rounded-2xl border border-white flex justify-between items-center shadow-sm hover:shadow-md transition-shadow group"
+              className="bg-white/80 p-5 sm:p-6 rounded-2xl border border-white flex justify-between items-center shadow-sm hover:shadow-md transition-shadow group"
             >
-               <div>
-                  <h3 className="font-black text-slate-800 text-lg mb-1">{item.name}</h3>
+               <div className="flex-1 pr-4">
+                  <h3 className="font-black text-slate-800 text-base sm:text-lg mb-1">{item.name}</h3>
                   <div className="flex items-center gap-4">
-                     <p className="text-sm font-bold text-slate-500 uppercase flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-coral-dark"></span> {item.loc}</p>
+                     <p className="text-[10px] sm:text-sm font-bold text-slate-500 uppercase flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-coral-dark"></span> {item.loc}</p>
                   </div>
                </div>
-               <div className="text-right">
-                  <span className="text-xs font-bold uppercase tracking-widest text-slate-400 bg-slate-100 px-3 py-1.5 rounded-md inline-block mb-1">{item.time}</span>
-                  <button className="block text-sm font-bold text-periwinkle-dark hover:text-periwinkle underline decoration-2 decoration-periwinkle-light underline-offset-4 mt-2">Claim ID</button>
+               <div className="text-right shrink-0">
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-400 bg-slate-100 px-3 py-1.5 rounded-md inline-block mb-1">{item.time}</span>
+                  <button className="block text-[10px] sm:text-sm font-bold text-periwinkle-dark hover:text-periwinkle underline decoration-2 decoration-periwinkle-light underline-offset-4 mt-2">Claim ID</button>
                </div>
             </motion.div>
           ))}

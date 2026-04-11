@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
@@ -21,6 +22,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const isLogin = location.pathname === '/login';
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (isLogin) {
     return <>{children}</>;
@@ -28,10 +30,10 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex flex-col text-slate-800 overflow-hidden h-screen w-screen font-sans relative">
-      <Navbar />
-      <div className="flex flex-1 overflow-hidden">
-        <Sidebar />
-        <main className="flex-1 overflow-y-auto p-4 relative flex flex-col">
+      <Navbar onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+      <div className="flex flex-1 overflow-hidden relative">
+        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <main className="flex-1 overflow-y-auto p-4 relative flex flex-col w-full h-full">
           <div className="w-full h-full flex flex-col">
             {children}
           </div>

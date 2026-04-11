@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bell, Radio, CheckSquare, X } from 'lucide-react';
+import { Bell, Radio, CheckSquare, X, Menu } from 'lucide-react';
 
 interface Notification {
   id: string;
@@ -9,7 +9,11 @@ interface Notification {
   time: string;
 }
 
-export default function Navbar() {
+interface NavbarProps {
+  onMenuClick?: () => void;
+}
+
+export default function Navbar({ onMenuClick }: NavbarProps) {
   const [notifications, setNotifications] = useState<Notification[]>([
     { id: '1', msg: 'Welcome back to CrowdEase system.', type: 'info', time: 'Just now' }
   ]);
@@ -38,9 +42,15 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="w-full h-16 bg-white/40 backdrop-blur-xl border-b border-white/50 flex items-center justify-between px-6 z-40 shrink-0 relative">
+      <nav className="w-full h-16 bg-white/40 backdrop-blur-xl border-b border-white/50 flex items-center justify-between px-4 sm:px-6 z-40 shrink-0 relative">
         <div className="flex items-center gap-4 flex-1">
-          <h2 className="text-periwinkle-dark font-black tracking-tight drop-shadow-sm sm:hidden">CrowdEase</h2>
+          <button 
+            onClick={onMenuClick}
+            className="p-2 -ml-2 text-slate-500 hover:text-periwinkle-dark transition-colors rounded-full hover:bg-white/60 lg:hidden"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+          <h2 className="text-periwinkle-dark font-black tracking-tight drop-shadow-sm lg:hidden">CrowdEase</h2>
           <div className="hidden sm:flex items-center gap-2 bg-white/60 px-4 py-2 rounded-full border border-white/80 shadow-sm backdrop-blur-md">
              <Radio className="w-3 h-3 text-mint-dark animate-pulse" />
              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mr-2 border-r border-slate-200 pr-3">Live Status</span>
@@ -48,7 +58,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <button 
              onClick={() => setShowDrawer(true)}
              className="relative p-2.5 text-slate-500 hover:text-periwinkle-dark transition-colors rounded-full hover:bg-white/60 border border-transparent hover:border-white/50"
@@ -59,24 +69,23 @@ export default function Navbar() {
              )}
           </button>
           
-          <div className="h-6 w-[1px] bg-slate-300"></div>
+          <div className="h-6 w-[1px] bg-slate-300 hidden xs:block"></div>
           
-          <div className="flex items-center gap-3 pl-2 cursor-pointer group">
-             <div className="text-right hidden sm:block">
+          <div className="flex items-center gap-2 sm:gap-3 pl-2 cursor-pointer group">
+             <div className="text-right hidden md:block">
                <p className="text-sm font-bold text-slate-800 group-hover:text-periwinkle-dark transition-colors">Admin User</p>
                <p className="text-[10px] text-slate-500 font-medium uppercase tracking-widest">Network Auth</p>
              </div>
-             <div className="w-10 h-10 rounded-full bg-periwinkle-light flex items-center justify-center overflow-hidden border-2 border-white shadow-sm transition-transform group-hover:scale-105">
+             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-periwinkle-light flex items-center justify-center overflow-hidden border-2 border-white shadow-sm transition-transform group-hover:scale-105">
                 <img src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff" alt="Profile" className="w-full h-full object-cover" />
              </div>
-             <button onClick={() => { localStorage.removeItem('isAuthenticated'); window.location.href = '/login'; }} className="ml-2 bg-slate-100 hover:bg-rose-100 hover:text-rose-600 text-slate-500 p-2 rounded-full transition-colors" title="Logout">
+             <button onClick={() => { localStorage.removeItem('isAuthenticated'); window.location.href = '/login'; }} className="hidden sm:flex ml-2 bg-slate-100 hover:bg-rose-100 hover:text-rose-600 text-slate-500 p-2 rounded-full transition-colors" title="Logout">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
              </button>
           </div>
         </div>
       </nav>
 
-      {/* Side Panel Drawer for Notifications */}
       <AnimatePresence>
         {showDrawer && (
           <>
@@ -88,7 +97,7 @@ export default function Navbar() {
             
             <motion.div 
               initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-96 bg-white/80 backdrop-blur-2xl border-l border-white/50 shadow-2xl z-50 flex flex-col p-6"
+              className="fixed right-0 top-0 bottom-0 w-full xs:w-80 sm:w-96 bg-white/80 backdrop-blur-2xl border-l border-white/50 shadow-2xl z-50 flex flex-col p-6"
             >
               <div className="flex justify-between items-center mb-6">
                  <div>

@@ -20,10 +20,10 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-4 w-full h-full">
+    <div className="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-2 gap-4 w-full h-auto lg:h-full pb-4 lg:pb-0">
       {/* ----------------- ROW 1 ----------------- */}
-      <motion.div layout className="md:col-span-12 lg:col-span-3 flex flex-col gap-4 h-full">
-         <div className="bento-card rounded-3xl p-6 flex-1 flex flex-col justify-between h-full">
+      <motion.div layout className="lg:col-span-3 flex flex-col gap-4 h-auto lg:h-full">
+         <div className="bento-card rounded-3xl p-6 flex-1 flex flex-col justify-between min-h-[160px] lg:h-full">
             <div className="flex items-center gap-2 text-slate-500 mb-2">
                <Clock className="w-5 h-5 text-periwinkle-dark" />
                <span className="text-sm font-bold">Fastest Line</span>
@@ -43,7 +43,7 @@ export default function Dashboard() {
          </div>
       </motion.div>
 
-      <motion.div layout className="md:col-span-12 lg:col-span-6 bento-card rounded-3xl p-6 flex flex-col h-full relative overflow-hidden">
+      <motion.div layout className="lg:col-span-6 bento-card rounded-3xl p-6 flex flex-col h-auto min-h-[400px] lg:h-full relative overflow-hidden">
          <div className="flex justify-between items-center z-10 relative mb-4">
             <h3 className="font-bold text-slate-800 flex items-center gap-2">
                <Map className="w-5 h-5 text-periwinkle-dark" /> Live Crowd Heatmap
@@ -52,7 +52,7 @@ export default function Dashboard() {
          </div>
          
          <div className="flex-1 w-full bg-white/50 rounded-2xl relative overflow-hidden flex items-center justify-center border border-white p-4 shadow-inner">
-            <svg viewBox="0 0 400 400" className="w-full h-full max-h-[100%] max-w-[100%] overflow-visible drop-shadow-md">
+            <svg viewBox="0 0 400 400" className="w-full h-full max-h-full max-w-full overflow-visible drop-shadow-md">
                {/* Center Pitch */}
                <rect x="140" y="100" width="120" height="200" rx="20" fill="rgba(16, 185, 129, 0.05)" stroke="#10b981" strokeWidth="2" strokeDasharray="6,6" />
                <circle cx="200" cy="200" r="30" fill="none" stroke="#10b981" strokeWidth="2" strokeDasharray="6,6" opacity="0.5" />
@@ -98,8 +98,8 @@ export default function Dashboard() {
          </div>
       </motion.div>
 
-      <motion.div layout className="md:col-span-12 lg:col-span-3 flex flex-col gap-4 h-full">
-         <div className="bento-card rounded-3xl p-6 flex-1 flex flex-col justify-center bg-gradient-to-br from-mint-light/80 to-white/60 h-full border-mint/30 shadow-[inset_0_0_20px_rgba(16,185,129,0.05)]">
+      <motion.div layout className="lg:col-span-3 flex flex-col gap-4 h-auto lg:h-full">
+         <div className="bento-card rounded-3xl p-6 flex-1 flex flex-col justify-center bg-gradient-to-br from-mint-light/80 to-white/60 min-h-[160px] lg:h-full border-mint/30 shadow-[inset_0_0_20px_rgba(16,185,129,0.05)]">
             <div className="flex items-center gap-2 mb-4">
                <div className="w-10 h-10 rounded-full bg-mint flex items-center justify-center">
                   <Lightbulb className="w-5 h-5 text-mint-dark" />
@@ -124,7 +124,7 @@ export default function Dashboard() {
 
 
       {/* ----------------- ROW 2 ----------------- */}
-      <motion.div layout className="md:col-span-12 lg:col-span-4 bento-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between h-full bg-white/70">
+      <motion.div layout className="lg:col-span-4 bento-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between h-auto min-h-[200px] lg:h-full bg-white/70">
          <div className="flex items-center gap-2 mb-auto z-10 relative">
             <TicketIcon className="w-6 h-6 text-periwinkle-dark" />
             <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest">My Passport</h3>
@@ -150,7 +150,7 @@ export default function Dashboard() {
          <TicketIcon className="absolute -right-5 -bottom-5 w-64 h-64 text-periwinkle-dark/5 rotate-12 pointer-events-none" />
       </motion.div>
 
-      <motion.div layout className="md:col-span-12 lg:col-span-8 bento-card rounded-3xl p-6 flex flex-col justify-center h-full bg-white/50 backdrop-blur-3xl">
+      <motion.div layout className="lg:col-span-8 bento-card rounded-3xl p-6 flex flex-col justify-center h-auto min-h-[250px] lg:h-full bg-white/50 backdrop-blur-3xl">
          <div className="flex items-start justify-between h-full flex-col w-full">
             <div className="w-full flex justify-between items-start mb-6">
                <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest flex items-center gap-2">
