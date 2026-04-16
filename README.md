@@ -1,73 +1,36 @@
-# React + TypeScript + Vite
+🏗️ Vertical
+Smart Infrastructure & Crisis Management AI-driven navigation to prevent crowd crush and optimize flow in high-density venues.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🧠 Approach & Logic
+CrowdEase uses Predictive Pressure Logic to manage human density dynamically.
 
-Currently, two official plugins are available:
+Threshold Gates: When a zone hits 80% capacity, the system triggers an automatic reroute.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Intent Processing: Google Gemini translates natural language (e.g., "fastest exit") into safe, low-density coordinates.
 
-## React Compiler
+Fluid Routing: It prioritizes system equilibrium over "shortest path" to prevent secondary bottlenecks.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+⚡ How it Works
+The solution leverages a high-performance Google Cloud stack optimized for the Antigravity challenge:
 
-## Expanding the ESLint configuration
+Antigravity Compliance: Ultra-lightweight React + Vite build (< 1 MB) using SVG-only assets and CDN-hosted dependencies.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Google Cloud Run: Provides instant, serverless scaling to handle 100k+ concurrent users during peak event surges.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Google Instances: High-performance Compute Engine nodes process live IoT sensor telemetry into actionable density data.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Google Maps Platform: Powers the geospatial geofencing and real-time user location tracking.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+📝 Assumptions
+IoT Feed: Real-time occupancy data is available via a secure JSON endpoint.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+User Access: Location permissions are granted for proximity-based rerouting.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Network: Low-latency 5G or high-density Wi-Fi is available on-site.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+📂 Structure
+src/logic/densityEngine.ts: Core autonomous rerouting algorithm.
+
+src/components/Assistant: Gemini-powered navigation interface.
+
+public/assets: Minimalist SVG iconography.
