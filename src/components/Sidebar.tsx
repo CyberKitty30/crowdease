@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Activity, Ticket, Search, ShieldAlert, LogOut, Clock3, Navigation as NavIcon, X } from 'lucide-react';
+import { Home, Activity, Ticket, Search, ShieldAlert, LogOut, Clock3, Navigation as NavIcon, X, Crown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface SidebarProps {
@@ -11,6 +11,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const links = [
     { name: 'Dashboard', path: '/dashboard', icon: Home },
     { name: 'Analytics', path: '/analytics', icon: Activity },
+    { name: 'Seat Upgrades', path: '/upgrades', icon: Crown },
     { name: 'Smart Queues', path: '/queues', icon: Clock3 },
     { name: 'Group Sync', path: '/navigation', icon: NavIcon },
     { name: 'Ticket Scanner', path: '/tickets', icon: Ticket },

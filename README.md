@@ -1,36 +1,75 @@
-🏗️ Vertical
-Smart Infrastructure & Crisis Management AI-driven navigation to prevent crowd crush and optimize flow in high-density venues.
+# 🏟️ CrowdEase: Physical AI Digital Twin
+**Optimized for the 2026 Google Challenge | Technical Merit & Accessibility Excellence**
 
-🧠 Approach & Logic
-CrowdEase uses Predictive Pressure Logic to manage human density dynamically.
+CrowdEase is a production-ready **Digital Twin Assistant** that transforms static venue data into a dynamic, agentic ecosystem. It leverages fluid crowd dynamics and predictive logic to ensure ultra-safe, high-efficiency navigation in high-density environments.
 
-Threshold Gates: When a zone hits 80% capacity, the system triggers an automatic reroute.
+![CrowdEase Dashboard](https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop)
 
-Intent Processing: Google Gemini translates natural language (e.g., "fastest exit") into safe, low-density coordinates.
+---
 
-Fluid Routing: It prioritizes system equilibrium over "shortest path" to prevent secondary bottlenecks.
+## 🧠 Core Agentic Intelligence
 
-⚡ How it Works
-The solution leverages a high-performance Google Cloud stack optimized for the Antigravity challenge:
+### 1. State-Propagation Engine
+Unlike static maps, CrowdEase utilizes a **State-Propagation Engine**. Fluctuations in `Zone_A` (Entrance) trigger delayed, fluid ripples in `Zone_B` (Food Court), simulating real-world physics and predicting bottlenecks before they happen.
 
-Antigravity Compliance: Ultra-lightweight React + Vite build (< 1 MB) using SVG-only assets and CDN-hosted dependencies.
+### 2. Agentic Safety Assistant
+Managed by a glassmorphic Agent component, the system doesn't just display alerts—it proposes **Action Plans**.
+- **Ghost Routes**: Prescriptive rerouting that saves time and balances load.
+- **Dynamic Deflection**: Autonomously managing inbound traffic via digital signage simulation.
 
-Google Cloud Run: Provides instant, serverless scaling to handle 100k+ concurrent users during peak event surges.
+### 3. Interactive Seat Upgrades
+A cinematic, visual seat-map allowing users to claim available suites in real-time, with full transaction physics and coordinate persistence.
 
-Google Instances: High-performance Compute Engine nodes process live IoT sensor telemetry into actionable density data.
+---
 
-Google Maps Platform: Powers the geospatial geofencing and real-time user location tracking.
+## ♿ 2026 Accessibility Mandate
+CrowdEase is architected for April 2026 ADA Title II and WCAG 2.1 Level AA compliance.
 
-📝 Assumptions
-IoT Feed: Real-time occupancy data is available via a secure JSON endpoint.
+- **Global Reduced Motion**: A centralized `AccessibilityContext` allows users to toggle off all animations across the entire platform.
+- **Screen Reader Optimization**: Every live element (Heatmaps, Efficiency Gauges, AI Agent) uses `aria-live` and programmatic labeling for parity in experience.
 
-User Access: Location permissions are granted for proximity-based rerouting.
+---
 
-Network: Low-latency 5G or high-density Wi-Fi is available on-site.
+## ⚡ Technical Stack (GCP Optimized)
 
-📂 Structure
-src/logic/densityEngine.ts: Core autonomous rerouting algorithm.
+- **Frontend**: React + Vite (Ultra-lightweight, < 1 MB bundle).
+- **Styling**: Tailwind CSS V4 + Vanilla CSS Hybrid.
+- **Animations**: Framer Motion (Optimized for reduced-motion contexts).
+- **Icons**: Lucide React.
+- **Deployment**: 
+  - **Google Cloud Run**: Managed serverless containerization.
+  - **Cloud Build**: Native GCP CI/CD integration.
 
-src/components/Assistant: Gemini-powered navigation interface.
+---
 
-public/assets: Minimalist SVG iconography.
+## 📂 Deployment & Orchestration
+
+The repository is configured for immediate cloud deployment.
+
+### Containerization
+The `dockerfile` is optimized with `NODE_ENV=production` and dynamic `$PORT` exposure for Google Cloud Run.
+
+### GitHub / Cloud Run Sync
+I have provided a deployment orchestrator in the `scripts/` directory:
+```powershell
+# Bypasses restricted execution policy to run the orchestrator
+powershell -ExecutionPolicy Bypass -File .\scripts\deploy.ps1
+```
+
+### Manual Cloud Build
+```bash
+gcloud builds submit --config cloudbuild.yaml
+```
+
+---
+
+## 🛠️ Development Setup
+
+1. **Install Dependencies**: `npm install`
+2. **Launch Dev Server**: `npm run dev`
+3. **Production Build**: `npm run build`
+
+---
+
+> [!IMPORTANT]
+> This project is designed for the **Antigravity Challenge**. It prioritizes extreme performance, visual excellence, and inclusive design.
