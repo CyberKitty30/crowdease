@@ -23,7 +23,7 @@ if (!(Test-Path .git)) {
     git remote add origin $GithubUrl
 }
 git add .
-git commit -m "chore: production readiness and deployment scripts"
+git commit -m "feat: finalized agentic assistant and performed repository cleanup"
 git branch -M main
 git push -u origin main
 
