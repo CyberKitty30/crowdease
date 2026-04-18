@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --color-mint: #d1fae5;
+  --color-mint-dark: #10b981;
+  --color-peach: #ffedd5;
+  --color-peach-dark: #f97316;
+  --color-coral: #ffe4e6;
+  --color-coral-dark: #f43f5e;
+  --color-periwinkle: #e0e7ff;
+  --color-periwinkle-dark: #6366f1;
+}
+
+body {
+  background-color: #f5f7ff;
+  color: #334155;
+  font-family: 'Inter', sans-serif;
+  background-image: 
+    radial-gradient(at 40% 20%, hsla(228,100%,74%,0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(189,100%,56%,0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(355,100%,93%,0.5) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.bento-card {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: 20px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.4);
+}
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+/* Accessibility: High Contrast Mode */
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+  background-image: none !important;
+}
+
+.high-contrast .bento-card {
+  background-color: #000 !important;
+  border: 2px solid #fff !important;
+  color: #fff !important;
+  backdrop-filter: none !important;
+}
+
+.high-contrast text, 
+.high-contrast span, 
+.high-contrast h2, 
+.high-contrast h3, 
+.high-contrast p {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+.high-contrast .text-mint-dark, 
+.high-contrast .text-periwinkle-dark, 
+.high-contrast .text-rose-600 {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+.high-contrast button {
+  border: 2px solid #fff !important;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .bento-card {
+    padding: 1rem;
+    border-radius: 1.25rem;
+  }
+}
+
+/* Ensure minimum touch target size on mobile */
+button, a {
+  min-height: 36px;
+}
+
+@media (max-width: 640px) {
+  button, a {
+    min-height: 44px;
+  }
+}
