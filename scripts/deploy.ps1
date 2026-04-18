@@ -11,7 +11,7 @@ param (
 Write-Host "--- CrowdEase Production Orchestration ---" -ForegroundColor Cyan
 
 # 1. Check for Git
-if (!(Get-Command git -ErrorAction SilentlyContinue)) {
+if (!(Get-Command git -ErrorAction SilentlyContinue) -and !(Get-Command git.exe -ErrorAction SilentlyContinue)) {
     Write-Error "Git is not installed or not in PATH. Please install Git to continue."
     exit
 }

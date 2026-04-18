@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useCrowdLogic } from '../hooks/useCrowdLogic';
 import SafetyAgent from '../components/SafetyAgent';
 import {
-  Map, Clock, Ticket as TicketIcon, Zap, CloudLightning,
-  ActivitySquare, CheckCircle2, Crown, Navigation
+  Map, Clock, Ticket as TicketIcon, CloudLightning,
+  ActivitySquare, CheckCircle2, Crown
 } from 'lucide-react';
 
 export default function Dashboard() {
