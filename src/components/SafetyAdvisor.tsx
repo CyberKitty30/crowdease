@@ -100,8 +100,8 @@ export default function SafetyAdvisor({ incidentType, location, description, isT
 
       <div className="space-y-4">
         {loading ? (
-          <div className="flex flex-col items-center py-8 text-periwinkle-dark">
-            <Loader2 className="w-8 h-8 animate-spin mb-3" />
+          <div className="flex flex-col items-center py-8 text-periwinkle-dark" aria-live="polite" aria-busy="true">
+            <Loader2 className="w-8 h-8 animate-spin mb-3" aria-hidden="true" />
             <p className="text-sm font-bold uppercase tracking-widest animate-pulse">Analyzing Incident Matrix...</p>
           </div>
         ) : error ? (
@@ -114,10 +114,12 @@ export default function SafetyAdvisor({ incidentType, location, description, isT
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="prose prose-sm prose-slate max-w-none"
+            aria-live="polite"
           >
-            <div className="whitespace-pre-wrap text-slate-700 font-medium leading-relaxed bg-white/50 p-4 rounded-2xl border border-white/50 shadow-inner">
-              {advice}
-            </div>
+            <div 
+              className="whitespace-pre-wrap text-slate-700 font-medium leading-relaxed bg-white/50 p-4 rounded-2xl border border-white/50 shadow-inner"
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(advice) }}
+            />
             <div className="mt-4 flex items-center gap-2 text-[10px] font-black text-mint-dark uppercase tracking-widest bg-mint/10 w-max px-3 py-1.5 rounded-full border border-mint-dark/20">
               <ShieldCheck className="w-3.5 h-3.5" /> Security Broadcast Ready
             </div>

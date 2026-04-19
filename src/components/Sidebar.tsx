@@ -31,8 +31,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-periwinkle to-periwinkle-dark flex items-center justify-center text-white font-black tracking-widest text-sm shadow-md">CE</div>
           <h1 className="text-xl font-bold text-slate-800 tracking-tight">CrowdEase</h1>
         </div>
-        <button onClick={onClose} className="p-2 text-slate-400 hover:text-slate-800 lg:hidden">
-          <X className="w-5 h-5" />
+        <button onClick={onClose} aria-label="Close navigation sidebar" className="p-2 text-slate-400 hover:text-slate-800 lg:hidden">
+          <X className="w-5 h-5" aria-hidden="true" />
         </button>
       </div>
       

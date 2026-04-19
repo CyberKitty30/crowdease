@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useCrowdLogic } from '../hooks/useCrowdLogic';
+import { streamToBigQuery } from '../services/googleServices';
 import SafetyAgent from '../components/SafetyAgent';
 import {
   Map, Clock, Ticket as TicketIcon, CloudLightning,
@@ -23,6 +24,18 @@ export default function Dashboard() {
   });
 
   const isUpgraded = currentSeat !== 'Sec 104, R G';
+
+  useEffect(() => {
+    // Stream data metrics to BigQuery explicitly for comprehensive API usage tracking
+    streamToBigQuery({
+      timestamp: data.timestamp.toISOString(),
+      zoneId: 'Global',
+      occupancy: data.zoneAOcc,
+      predictivePressure: data.zoneAPressure,
+      latencyMs: 14, // Simulated latency
+      sessionId: 'dash_' + Math.random().toString(36).substring(7)
+    });
+  }, [data.zoneAOcc, data.zoneAPressure, data.timestamp]);
   
   // Logic for heatmap colors
   const zoneAColor = data.zoneAOcc > 85 ? '#be123c' : data.zoneAOcc >= 70 ? '#b45309' : '#047857';
@@ -154,9 +167,10 @@ export default function Dashboard() {
             </div>
             <button
               onClick={() => navigate('/upgrades')}
+              aria-label="Upgrade to VIP status"
               className={`w-14 h-14 rounded-xl flex items-center justify-center border shadow-inner transition-all ml-4 shrink-0 ${isUpgraded ? 'bg-amber-100 border-amber-300' : 'bg-periwinkle-light border-periwinkle hover:scale-105 cursor-pointer'}`}
             >
-              <Crown className={`w-7 h-7 ${isUpgraded ? 'text-amber-500' : 'text-periwinkle-dark'}`} />
+              <Crown className={`w-7 h-7 ${isUpgraded ? 'text-amber-500' : 'text-periwinkle-dark'}`} aria-hidden="true" />
             </button>
           </div>
         </div>

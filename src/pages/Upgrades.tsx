@@ -8,7 +8,7 @@ export default function Upgrades() {
   const [upgradedSeat, setUpgradedSeat] = useState<string | null>(null);
 
   const [seats] = useState(() => {
-    const grid = [];
+    const grid: { id: string, status: string }[] = [];
     const rows = ['A', 'B', 'C', 'D'];
     for (let r = 0; r < rows.length; r++) {
       for (let c = 1; c <= 10; c++) {

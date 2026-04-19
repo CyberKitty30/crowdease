@@ -69,9 +69,9 @@ function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="flex flex-1 overflow-hidden relative">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
         <main className="flex-1 overflow-y-auto lg:overflow-hidden p-3 sm:p-4 relative flex flex-col w-full">
-          <div className="w-full flex flex-col flex-1 lg:h-full">
+          <section className="w-full flex flex-col flex-1 lg:h-full">
             {children}
-          </div>
+          </section>
         </main>
       </div>
     </div>
