@@ -1,28 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useCrowdLogic } from '../hooks/useCrowdLogic';
 import SafetyAgent from '../components/SafetyAgent';
 import {
   Map, Clock, Ticket as TicketIcon, CloudLightning,
-  ActivitySquare, CheckCircle2, Crown
+  ActivitySquare, CheckCircle2, Crown, Cloud
 } from 'lucide-react';
 
 export default function Dashboard() {
   const data = useCrowdLogic();
   const navigate = useNavigate();
-  const [currentSeat, setCurrentSeat] = useState('Sec 104, R G');
-  
-  useEffect(() => {
-    // Check if a new seat was claimed in the Upgrades page
+  const [currentSeat] = useState(() => {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
         const user = JSON.parse(storedUser);
         if (user.currentSeat) {
-            setCurrentSeat(user.currentSeat);
+            return user.currentSeat;
         }
     }
-  }, []);
+    return 'Sec 104, R G';
+  });
 
   const isUpgraded = currentSeat !== 'Sec 104, R G';
   
@@ -87,6 +85,9 @@ export default function Dashboard() {
               <Map className="w-5 h-5 text-periwinkle-dark shrink-0" /> Live Crowd Heatmap
             </h3>
             <div className="flex gap-2 flex-wrap justify-end">
+              <span className="text-[10px] font-bold bg-blue-50 text-blue-700 px-2 py-1 rounded-full uppercase tracking-widest flex items-center gap-1 border border-blue-200">
+                <Cloud className="w-3 h-3" /> Google Cloud IoT
+              </span>
               <span className="text-[10px] font-bold bg-mint/50 text-mint-dark px-2 py-1 rounded-full uppercase tracking-wider animate-pulse border border-mint">
                 Live
               </span>

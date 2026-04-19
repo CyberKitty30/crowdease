@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { User, Mail, Lock, ArrowRight, Fingerprint } from 'lucide-react';
+import DOMPurify from 'dompurify';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -15,16 +16,20 @@ export default function Login() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isSignUp && !formData.name) return;
-    if (!formData.email || !formData.password) return;
+    if (isSignUp && (!formData.name || formData.name.trim() === '')) return;
+    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) return;
+    if (!formData.password || formData.password.length < 8) {
+      alert("Password must be at least 8 characters");
+      return;
+    }
 
     setLoading(true);
     setTimeout(() => {
         // Store structured user data for the Digital Twin Identity
         const user = {
-            name: isSignUp ? formData.name : formData.email.split('@')[0],
-            email: formData.email,
-            role: 'Network Operator',
+            name: DOMPurify.sanitize(isSignUp ? formData.name : formData.email.split('@')[0]),
+            email: DOMPurify.sanitize(formData.email),
+            role: 'Administrator',
             loginTime: new Date().toISOString()
         };
         localStorage.setItem('isAuthenticated', 'true');
@@ -39,7 +44,7 @@ export default function Login() {
         const user = {
             name: 'Google User',
             email: 'google.auth@crowdease.ai',
-            role: 'External Agent',
+            role: 'Guest',
             loginTime: new Date().toISOString()
         };
         localStorage.setItem('isAuthenticated', 'true');
@@ -111,10 +116,11 @@ export default function Login() {
                 exit={{ opacity: 0, height: 0 }}
                 className="space-y-1.5 overflow-hidden"
               >
-                <label className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Full Name</label>
+                <label htmlFor="signupName" className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Full Name</label>
                 <div className="relative group">
                   <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-periwinkle-dark transition-colors" />
                   <input 
+                    id="signupName"
                     required
                     type="text" 
                     placeholder="Enter your name"
@@ -128,10 +134,11 @@ export default function Login() {
           </AnimatePresence>
 
           <div className="space-y-1.5">
-            <label className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Email Address</label>
+            <label htmlFor="loginEmail" className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Email Address</label>
             <div className="relative group">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-periwinkle-dark transition-colors" />
               <input 
+                id="loginEmail"
                 required
                 type="email" 
                 placeholder="name@crowdease.ai"
@@ -143,10 +150,11 @@ export default function Login() {
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Password</label>
+            <label htmlFor="loginPass" className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Password</label>
             <div className="relative group">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-periwinkle-dark transition-colors" />
               <input 
+                id="loginPass"
                 required
                 type="password" 
                 placeholder="••••••••"
@@ -170,6 +178,19 @@ export default function Login() {
               </>
             )}
           </button>
+
+          {!isSignUp && (
+            <div className="mt-6 flex flex-col items-center">
+              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest mb-3">Or authenticate securely via</p>
+              <button 
+                type="button"
+                className="w-full bg-white border border-slate-200 group relative flex items-center justify-center px-4 py-3.5 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all hover:bg-slate-50 hover:border-blue-200"
+              >
+                <Fingerprint className="w-5 h-5 text-blue-500 mr-2 shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-black text-slate-700 tracking-tight">Google Firebase Identity</span>
+              </button>
+            </div>
+          )}
         </form>
 
         <div className="mt-8 text-center">

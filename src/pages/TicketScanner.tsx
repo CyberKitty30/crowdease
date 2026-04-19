@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ScanLine, CheckCircle2, XCircle } from 'lucide-react';
+import { ScanLine, CheckCircle2, XCircle, ScanFace } from 'lucide-react';
 
 export default function TicketScanner() {
   const [scanning, setScanning] = useState(false);
@@ -26,6 +26,12 @@ export default function TicketScanner() {
         <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-10 flex items-center gap-2 sm:gap-3 bg-black/50 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/10">
           <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-rose-500 animate-pulse"></div>
           <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-widest">Live Node Alpha</span>
+        </div>
+        
+        <div className="absolute top-4 sm:top-6 right-4 sm:right-6 z-10 flex items-center gap-2 bg-blue-500/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-blue-400/30 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+          <ScanFace className="w-4 h-4 text-blue-300 animate-pulse" />
+          <span className="text-[10px] font-bold text-blue-100 uppercase tracking-widest drop-shadow-sm hidden sm:inline-block">Google Cloud Vision</span>
+          <span className="text-[10px] font-bold text-blue-100 uppercase tracking-widest drop-shadow-sm sm:hidden">Cloud Vision</span>
         </div>
         
         <div className="flex-1 relative flex items-center justify-center p-6 sm:p-8">

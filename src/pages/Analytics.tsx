@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Users, TrendingUp, AlertCircle, ArrowUpRight, BarChart3, ArrowDownRight } from 'lucide-react';
+import { Users, TrendingUp, AlertCircle, ArrowUpRight, BarChart3, ArrowDownRight, Database } from 'lucide-react';
 import { useCrowdLogic } from '../hooks/useCrowdLogic';
 import { useMemo } from 'react';
 
@@ -129,6 +129,13 @@ export default function Analytics() {
            <div className="absolute -right-20 -top-20 w-80 h-80 bg-periwinkle blur-3xl opacity-40 rounded-full pointer-events-none"></div>
            
            <h3 className="text-slate-800 font-bold mb-4 z-10 text-xl text-center">Predictive Index Tracker</h3>
+           <div className="mb-6 z-10 flex items-center px-4 py-2 bg-blue-50 border border-blue-100 rounded-2xl gap-3">
+             <Database className="w-5 h-5 text-blue-500 shrink-0"/>
+             <div className="text-left leading-tight">
+                <p className="text-[9px] uppercase font-bold text-blue-400 tracking-widest">Data Warehouse Engine</p>
+                <p className="text-xs font-black text-blue-600">Google Cloud BigQuery</p>
+             </div>
+           </div>
            <p className="text-slate-500 text-sm text-center max-w-sm mb-12 z-10 flex-1">Advanced machine learning identifies high-traffic anomalies precisely before they happen globally.</p>
            
             <div 

@@ -20,14 +20,15 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
     { id: '1', msg: 'Welcome back to CrowdEase system.', type: 'info', time: 'Just now' }
   ]);
   const [showDrawer, setShowDrawer] = useState(false);
-  const [user, setUser] = useState({ name: 'Guest User', role: 'External' });
-
-  useEffect(() => {
+  const [user] = useState(() => {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
-        setUser(JSON.parse(storedUser));
+      return JSON.parse(storedUser);
     }
+    return { name: 'Guest User', role: 'External' };
+  });
 
+  useEffect(() => {
     const int = setInterval(() => {
       const messages = [
         "Gate 4 is now clear!",
@@ -92,7 +93,6 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
           <div className="flex items-center gap-2 sm:gap-3 pl-2 cursor-pointer group">
              <div className="text-right hidden md:block">
                <p className="text-sm font-bold text-slate-800 group-hover:text-periwinkle-dark transition-colors">{user.name}</p>
-               <p className="text-[10px] text-slate-500 font-medium uppercase tracking-widest">{user.role}</p>
              </div>
              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-periwinkle-light flex items-center justify-center overflow-hidden border-2 border-white shadow-sm transition-transform group-hover:scale-105">
                 <img src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=6366f1&color=fff`} alt="Profile" className="w-full h-full object-cover" />

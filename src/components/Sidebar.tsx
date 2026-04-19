@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Activity, Ticket, Search, ShieldAlert, LogOut, Clock3, Navigation as NavIcon, X, Crown } from 'lucide-react';
+import { Home, Activity, Ticket, Search, ShieldAlert, LogOut, Clock3, Navigation as NavIcon, X, Crown, Cloud } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface SidebarProps {
@@ -56,7 +56,12 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         ))}
       </nav>
 
-      <div className="p-4 border-t border-white/50 mt-6 mb-4">
+      <div className="p-4 border-t border-white/50 mt-6 mb-4 space-y-4">
+        <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200 flex flex-col items-center justify-center text-center shadow-inner">
+          <Cloud className="w-5 h-5 text-blue-500 mb-1" />
+          <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-tight">Deployed securely on</p>
+          <p className="text-xs font-black text-slate-800 tracking-tight">Google Cloud</p>
+        </div>
         <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 border border-transparent rounded-2xl text-slate-500 hover:text-slate-800 hover:bg-white/50 transition-colors text-sm font-semibold">
           <LogOut className="w-4 h-4" />
           <span>Sign Out</span>
