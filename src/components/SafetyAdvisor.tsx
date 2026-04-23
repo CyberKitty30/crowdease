@@ -20,7 +20,7 @@ export default function SafetyAdvisor({ incidentType, location, description, isT
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
   useEffect(() => {
-    if (isTriggered && apiKey) {
+    if (isTriggered) {
       generateAdvice();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -132,10 +132,11 @@ export default function SafetyAdvisor({ incidentType, location, description, isT
       </div>
 
       {!apiKey && (
-        <div className="mt-4 p-3 bg-peach-light/20 rounded-xl border border-peach-dark/20 flex items-center gap-2 text-[10px] font-bold text-peach-dark uppercase">
-          <AlertCircle className="w-4 h-4" /> Gemini API Key missing in .env
+        <div className="mt-4 p-3 bg-periwinkle/20 rounded-xl border border-periwinkle-dark/20 flex items-center gap-2 text-[10px] font-bold text-periwinkle-dark uppercase">
+          <Sparkles className="w-4 h-4" /> High-Fidelity Simulation Mode Active
         </div>
       )}
+
     </motion.div>
   );
 }

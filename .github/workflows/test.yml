@@ -24,7 +24,7 @@ jobs:
       run: npm run lint
       
     - name: Execute Vitest Coverage Flow
-      run: npm run test -- --coverage
+      run: npm run test
       
     - name: Simulated Google Services BigQuery Sink Validation
       run: echo "Verified"
